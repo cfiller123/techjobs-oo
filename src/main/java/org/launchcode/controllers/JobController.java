@@ -25,15 +25,9 @@ public class JobController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model, int id) {
 
-        // TODO #1 - get the Job with the given ID and pass it into the view
+        // TODO #1 - get the Job with the given ID and pass it into the view COMPLETE!!!
         Job foundJob = jobData.findById(id);
-//        String name = foundJob.getName();
-//        Employer employer = foundJob.getEmployer();
-//        Location location = foundJob.getLocation();
-//        CoreCompetency core = foundJob.getCoreCompetency();
-//        PositionType position = foundJob.getPositionType();
-        model.addAttribute(foundJob);
-
+        model.addAttribute("foundJob",foundJob);
         return "job-detail";
     }
 
