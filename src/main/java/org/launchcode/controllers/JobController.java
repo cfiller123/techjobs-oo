@@ -44,6 +44,25 @@ public class JobController {
         // new Job and add it to the jobData data store. Then
         // redirect to the job detail view for the new Job.
 
+        if (errors.hasErrors()) {
+            model.addAttribute(jobForm);
+            return "new-job";
+        }
+
+        else {
+            String name = jobForm.getName();
+            int location = jobForm.getLocationId();
+            int employer = jobForm.getEmployerId();
+            int position = jobForm.getPositionId();
+            int competency = jobForm.getCompetencyId();
+            Employer emp = jobData.getEmployers().findById(employer);
+            Location loc = jobData.getLocations().findById(location);
+            PositionType posType = jobData.getPositionTypes().findById(position);
+            CoreCompetency comp = jobData.getCoreCompetencies().findById(competency);
+            Job newJob = new Job(name,emp,loc,posType,comp);
+            jobData.add(newJob);
+        }
+
         return "";
 
     }
