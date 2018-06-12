@@ -38,6 +38,7 @@ public class JobController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
+//    @RequestMapping(value = "job/{newJob.id}", method = RequestMethod.POST)
     public String add(Model model, @Valid JobForm jobForm, Errors errors) {
 
         // TODO #6 - Validate the JobForm model, and if valid, create a
@@ -61,9 +62,9 @@ public class JobController {
             CoreCompetency comp = jobData.getCoreCompetencies().findById(competency);
             Job newJob = new Job(name,emp,loc,posType,comp);
             jobData.add(newJob);
+            model.addAttribute("foundJob", newJob);
+            return "job-detail";
         }
-
-        return "";
 
     }
 }
