@@ -62,8 +62,9 @@ public class JobController {
             CoreCompetency comp = jobData.getCoreCompetencies().findById(competency);
             Job newJob = new Job(name,emp,loc,posType,comp);
             jobData.add(newJob);
+            int id = newJob.getId();
             model.addAttribute("foundJob", newJob);
-            return "job-detail";
+            return "redirect:/job?id=" + id;
         }
 
     }
